@@ -9,7 +9,7 @@ public class AppWebInitializer extends AbstractAnnotationConfigDispatcherServlet
 	}
 
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { AppWebSocketConfig.class , AppWebMvcConfig.class};
+		return new Class[] { AppWebSocketConfig.class};
 	}
 
 	protected String[] getServletMappings() {
