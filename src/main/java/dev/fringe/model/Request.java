@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class Request {
-	private int num1;
-	private int num2;
+	private int one;
+	private int two;
 }

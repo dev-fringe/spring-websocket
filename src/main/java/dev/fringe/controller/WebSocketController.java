@@ -19,7 +19,7 @@ public class WebSocketController {
 	@MessageMapping("/add")
 	@SendTo("/topic/response")
 	public Response addNum(Request req) throws Exception {
-		return new Response(req.getNum1() + "+" + req.getNum2() + "=" + (req.getNum1() + req.getNum2()));
+		return new Response(req.getOne() + "+" + req.getTwo() + "=" + (req.getOne() + req.getTwo()));
 	}
 
 }

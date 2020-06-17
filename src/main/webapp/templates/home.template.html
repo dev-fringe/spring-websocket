@@ -1,30 +1,23 @@
-
-<label>Number One:</label><input type="text" id="numberOne" /><br /> <label>Number
-	Two:</label><input type="text" id="numberTwo" /><br />
-<button id="request" onclick="request();">request Add</button>
-
-<div>
-    <p id="response"></p>
-</div>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-<script src="https://cdn.bootcss.com/sockjs-client/1.3.0/sockjs.js"></script>
-<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     var sock = new SockJS('connectWS');
-    var stompClient = Stomp.over(sock);
-    stompClient = Stomp.over(sock);
-    stompClient.connect({},function(frame){
-        stompClient.subscribe('/topic/response',function(response){
-        	console.log(JSON.parse(response.body).result);
-            $("#response").html(JSON.parse(response.body).result);
+    var stomp = Stomp.over(sock);
+    stomp = Stomp.over(sock);
+    stomp.connect({},function(frame){
+    	stomp.subscribe('/topic/response',function(res){
+            $("#res").html(JSON.parse(res.body).result);
         });
     });
-	function request() {
-		var one = document.getElementById('numberOne').value;
-		var two = document.getElementById('numberTwo').value;
-		stompClient.send("/app/add", {}, JSON.stringify({
-			'num1' : $("#numberOne").val(),
-			'num2' : $("#numberTwo").val()
+	function add() {
+		stomp.send("/app/add", {}, JSON.stringify({
+			'one' : $("#one").val(),
+			'two' : $("#two").val()
 		}));
 	}    
 </script>
+<label>Number1:</label><input type="text" id="one" /><br/> 
+<label>Number2:</label><input type="text" id="two" /><br />
+<button onclick="add();">Add</button>
+<div><p id="res"></p></div>
