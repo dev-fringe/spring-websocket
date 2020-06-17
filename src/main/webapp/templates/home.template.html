@@ -1,0 +1,54 @@
+<script src="resources/sockjs-0.3.4.js"></script>
+<script src="resources/stomp.js"></script>
+<script type="text/javascript">
+
+	var stomp = null;
+	
+	function setConnected(connected) {
+		document.getElementById('connect').disabled = connected;
+		document.getElementById('disconnect').disabled = !connected;
+		document.getElementById('calculationDiv').style.visibility = connected ? 'visible' : 'hidden';
+		document.getElementById('calResponse').innerHTML = '';
+	}
+	function connect() {
+		var socket = new SockJS('connectWS');
+		stomp = Stomp.over(socket);
+		stomp.connect({}, function(frame) {
+			setConnected(true);
+			stomp.subscribe('/topic/response', function(res) {
+				var message =JSON.parse(res.body).result;
+				var response = document.getElementById('calResponse');
+				var p = document.createElement('p');
+				p.style.wordWrap = 'break-word';
+				p.appendChild(document.createTextNode(message));
+				response.appendChild(p);				
+			});
+		});
+	}
+	
+	function disconnect() {
+		stomp.disconnect();
+		setConnected(false);
+	}
+	function requestAdd() {
+		var one = document.getElementById('numberOne').value;
+		var two = document.getElementById('numberTwo').value;
+		stomp.send("/app/add", {}, JSON.stringify({
+			'num1' : one,
+			'num2' : two
+		}));
+	}
+</script>
+<h1>Add App Using Spring WebSocket</h1>
+<div>
+	<div>
+		<button id="connect" onclick="connect();">Connect</button>
+		<button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+	</div>
+	<div id="calculationDiv">
+		<label>Number One:</label><input type="text" id="numberOne" /><br /> <label>Number
+			Two:</label><input type="text" id="numberTwo" /><br />
+		<button id="sendNum" onclick="requestAdd();">request Add</button>
+		<p id="calResponse"></p>
+	</div>
+</div>
