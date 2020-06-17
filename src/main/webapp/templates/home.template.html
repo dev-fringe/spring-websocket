@@ -2,22 +2,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    var sock = new SockJS('connectWS');
-    var stomp = Stomp.over(sock);
-    stomp = Stomp.over(sock);
-    stomp.connect({},function(frame){
-    	stomp.subscribe('/topic/response',function(res){
-            $("#res").html(JSON.parse(res.body).result);
-        });
-    });
+	var sock = new SockJS('connectWS');
+	var stomp = Stomp.over(sock);
+	stomp = Stomp.over(sock);
+	stomp.connect({}, function(frame) {
+		stomp.subscribe('/topic/response', function(res) {
+			$("#res").html(JSON.parse(res.body).result);
+		});
+	});
 	function add() {
 		stomp.send("/app/add", {}, JSON.stringify({
 			'one' : $("#one").val(),
 			'two' : $("#two").val()
 		}));
-	}    
+	}
 </script>
-<label>Number1:</label><input type="text" id="one" /><br/> 
+<label>Number1:</label><input type="text" id="one" /><br />
 <label>Number2:</label><input type="text" id="two" /><br />
 <button onclick="add();">Add</button>
 <div><p id="res"></p></div>
