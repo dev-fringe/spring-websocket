@@ -1,22 +1,11 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-	var sock = new SockJS('connectWS');
-	var stomp = Stomp.over(sock);
-	stomp.connect({}, function(frame) {
-		stomp.subscribe('/topic/response', function(res) {
-			$("#res").html(JSON.parse(res.body).result);
-		});
-	});
-	function add() {
-		stomp.send("/app/add", {}, JSON.stringify({
-			'one' : $("#one").val(),
-			'two' : $("#two").val()
-		}));
-	}
-</script>
-number1:<input type="text" id="one" /><br />
-number2:<input type="text" id="two" /><br />
-<button onclick="add()">add</button>
-<div><p id="res"></p></div>
+<!DOCTYPE html>
+<html>
+    <head><title>TypeScript Greeter</title></head>
+    <body>
+        number1:<input type="text" id="one" /><br />
+        number2:<input type="text" id="two" /><br />
+        <button name="add">add</button>
+        <div><p id="res"></p></div>        
+        <script src="resources/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@stomp/stompjs": "^5.4.4",
+    "@types/sockjs-client": "^1.1.1",
+    "sockjs": "^0.3.20",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "sockjs-client": "^1.4.0"
+  }
+}
