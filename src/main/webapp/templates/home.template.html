@@ -4,7 +4,6 @@
 <script>
 	var sock = new SockJS('connectWS');
 	var stomp = Stomp.over(sock);
-	stomp = Stomp.over(sock);
 	stomp.connect({}, function(frame) {
 		stomp.subscribe('/topic/response', function(res) {
 			$("#res").html(JSON.parse(res.body).result);
@@ -17,7 +16,7 @@
 		}));
 	}
 </script>
-<label>Number1:</label><input type="text" id="one" /><br />
-<label>Number2:</label><input type="text" id="two" /><br />
-<button onclick="add()">Add</button>
+number1:<input type="text" id="one" /><br />
+number2:<input type="text" id="two" /><br />
+<button onclick="add()">add</button>
 <div><p id="res"></p></div>

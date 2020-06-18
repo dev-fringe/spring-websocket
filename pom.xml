@@ -6,7 +6,6 @@
 	<artifactId>spring-websocket</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-websocket</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -38,7 +37,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.0</version>
+			<version>4.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -51,9 +50,9 @@
 			<version>0.9.6</version>
 		</dependency>
 		<dependency>
-			<groupId>com.github.mjeanroy</groupId>
-			<artifactId>springmvc-mustache</artifactId>
-			<version>0.5.3</version>
+		    <groupId>com.github.mjeanroy</groupId>
+		    <artifactId>springmvc-mustache</artifactId>
+		    <version>2.0.0</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -70,5 +69,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
