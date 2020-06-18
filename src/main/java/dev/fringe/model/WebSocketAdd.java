@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Add {
+public class WebSocketAdd {
 	private int one;
 	private int two;
 	
 	private String result;
 
-	public Add(String result) {
+	public WebSocketAdd(String result) {
 		this.result = result;
 	}
 
