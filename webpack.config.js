@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: "production",	
-    entry: './src/main/javascript/index.ts',
+    entry: './src/main/typescript/index.ts',
     module: {rules: [{ 
         test: /\.ts$/, loader: "ts-loader"            
     }]},
